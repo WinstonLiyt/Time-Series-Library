@@ -1,7 +1,9 @@
-#!/bin/bash
+export HIP_VISIBLE_DEVICES=0,1,2,3
 
-csv_folder="D:/Study/THURA/pre_commodities"
-log_file="D:/Study/THURA/all_logs.txt"
+model_name="Transformer"
+
+csv_folder="/public/home/achwdu6prw/pre_commodities"
+log_file="/public/home/achwdu6prw/all_logs_${model_name}.txt"
 
 # 遍历文件夹中的所有 CSV 文件
 for csv_file in "$csv_folder"/*.csv
@@ -24,7 +26,7 @@ do
         --seasonal_patterns 'Monthly' \
         --inverse \
         --model_id usa_1 \
-        --model Transformer \
+        --model $model_name \
         --data MYC \
         --features MS \
         --target ret \
@@ -49,6 +51,7 @@ do
 
     echo "Finished processing $filename" >> "$log_file"
     echo "----------------------------------------" >> "$log_file"
+    break
 done
 
 echo "All tasks completed. Logs stored in $log_file"
