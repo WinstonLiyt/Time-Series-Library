@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export HIP_VISIBLE_DEVICES=0 
+export HIP_VISIBLE_DEVICES=0
 
-model_name="Transformer"
+model_name="Pyraformer"
 csv_folder="/public/home/achwdu6prw/pre_commodities/"
 log_file="/public/home/achwdu6prw/all_logs_${model_name}.txt"
 
@@ -17,7 +17,7 @@ do
         --is_training 1 \
         --root_path $csv_folder \
         --data_path $csv_file \
-        --model_id usa_transformer \
+        --model_id usa_Pyraformer \
         --model $model_name \
         --data MYC \
         --features MS \
@@ -28,9 +28,6 @@ do
         --dec_in $num_features \
         --c_out 1 \
         --d_model 512 \
-        --n_heads 8 \
-        --e_layers 2 \
-        --d_layers 1 \
         --moving_avg 15 \
         --factor 3 \
         --train_epochs 20 \

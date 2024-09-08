@@ -366,7 +366,7 @@ class Dataset_Custom_Commodities(Dataset):
         cols.remove('date')
         cols.remove('ComCode')
         df_raw = df_raw[['date'] + cols + [self.target]]
-        print(df_raw)
+        # print(df_raw)
         num_train = int(len(df_raw) * 0.7)
         num_test = int(len(df_raw) * 0.2)
         num_vali = len(df_raw) - num_train - num_test

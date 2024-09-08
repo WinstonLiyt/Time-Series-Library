@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export HIP_VISIBLE_DEVICES=0 
+export HIP_VISIBLE_DEVICES=3
 
-model_name="Transformer"
+model_name="Crossformer"
 csv_folder="/public/home/achwdu6prw/pre_commodities/"
 log_file="/public/home/achwdu6prw/all_logs_${model_name}.txt"
 
@@ -17,29 +17,27 @@ do
         --is_training 1 \
         --root_path $csv_folder \
         --data_path $csv_file \
-        --model_id usa_transformer \
+        --model_id usa_Crossformer \
         --model $model_name \
         --data MYC \
         --features MS \
         --target ret \
         --freq b \
-        --mask_rate 0 \
+        --seq_len 15 \
+        --label_len 1 \
+        --pred_len 1 \
         --enc_in $num_features \
         --dec_in $num_features \
         --c_out 1 \
-        --d_model 512 \
-        --n_heads 8 \
         --e_layers 2 \
         --d_layers 1 \
-        --moving_avg 15 \
         --factor 3 \
-        --train_epochs 20 \
-        --batch_size 16 \
         --des 'Exp' \
-        --itr 1 \
-        --learning_rate 0.0001 \
-        --patience 5 \
-        --loss 'SMAPE'
+        --top_k 5 \
+        --des 'Exp' \
+        --n_heads 2 \
+        --batch_size 4 \
+        --itr 1
 
     echo "Finished processing $filename" >> "$log_file"
     echo "----------------------------------------" >> "$log_file"
